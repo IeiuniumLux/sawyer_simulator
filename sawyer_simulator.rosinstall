@@ -12,5 +12,5 @@
     version: master
 - git:
     local-name: sawyer_simulator
-    uri: https://github.com/RethinkRobotics/sawyer_simulator.git
+    uri: https://github.com/IeiuniumLux/sawyer_simulator.git
     version: master
