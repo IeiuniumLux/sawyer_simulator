@@ -18,7 +18,6 @@ cd ~/environment/simulation_ws
 rosdep update
 rosdep install --from-paths src --ignore-src -r -y
 colcon build
-./src/intera_sdk/intera.sh sim
 colcon bundle
 
 aws s3 mb s3://sawyer-bucket-robomaker
