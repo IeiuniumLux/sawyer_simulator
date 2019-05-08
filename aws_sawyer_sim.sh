@@ -15,6 +15,7 @@ wstool update
 source /opt/ros/kinetic/setup.bash
 
 cd ~/environment/simulation_ws
+sudo apt -y update
 rosdep update
 rosdep install --from-paths src --ignore-src -r -y
 colcon build
@@ -22,7 +23,7 @@ colcon bundle
 
 aws s3 mb s3://sawyer-bucket-robomaker
 
-aws s3api put-object --bucket sawyer-bucket-robomaker --key output/
+aws s3api put-object --bucket sawyer-bucket-robomaker --key outputs/
 
 aws s3 cp ~/environment/simulation_ws/bundle/output.tar s3://sawyer-bucket-robomaker/sawyer_sim.tar
 
