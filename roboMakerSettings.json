@@ -1,0 +1,68 @@
+{
+  "runConfigurations": [
+    {
+      "id": "sawyer_cfg01",
+      "name": "Sawyer Sim",
+      "type": "colcon build",
+      "cfg": {
+        "workingDir": "./simulation_ws",
+        "cmdArgs": ""
+      }
+    },
+    {
+      "id": "sawyer_cfg02",
+      "name": "Sawyer Sim",
+      "type": "colcon bundle",
+      "cfg": {
+        "workingDir": "./simulation_ws",
+        "cmdArgs": ""
+      }
+    },
+    {
+      "id": "sawyer_sim01",
+      "name": "sawyer_sim",
+      "type": "simulation",
+      "cfg": {
+        "simulationApp": {
+          "name": "sawyer_sim",
+          "sourceBundleFile": "./simulation_ws/bundle/output.tar",
+          "architecture": "X86_64",
+          "s3Bucket": "sawyer-bucket-robomaker",
+          "launchConfig": {
+            "packageName": "sawyer_gazebo",
+            "launchFile": "sawyer_world.launch",
+            "environmentVariables": {}
+          },
+          "simulationSoftwareSuite": {
+            "name": "Gazebo",
+            "version": "7"
+          },
+          "renderingEngine": {
+            "name": "OGRE",
+            "version": "1.x"
+          },
+          "robotSoftwareSuite": {
+            "name": "ROS",
+            "version": "Kinetic"
+          }
+        },
+        "simulation": {
+          "maxJobDurationInSeconds": 1000,
+          "failureBehavior": "Fail",
+          "iamRole": "arn:aws:iam::417362065725:role/sawyer_role",
+          "outputLocation": "",
+          "tags": {}
+        }
+      }
+    },
+    {
+      "id": "sawyer_wf1",
+      "type": "workflow",
+      "name": "Sawyer Sim - Build and Bundle All",
+      "runCfgIds": [
+        "sawyer_cfg01",
+        "sawyer_cfg02"
+      ]
+    }
+  ]
+}
